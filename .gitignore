@@ -6,3 +6,4 @@ env/
 /.idea/inspectionProfiles/profiles_settings.xml
 /.idea/SIS-Bot.iml
 /.idea/vcs.xml
+/.env
