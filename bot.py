@@ -69,5 +69,9 @@ while True:
     if curr_time >= registration_time:
         print("Executing")
         enrollButton.click()
+        WebDriverWait(browser, 10).until(lambda d: d.find_element_by_id('#ICYes'))
+        yesButton = browser.find_element_by_id('#ICYes')
+        yesButton.click()
+        print("Successfully registered.")
         WebDriverWait(browser, 10000)
         break
