@@ -7,3 +7,5 @@ env/
 /.idea/SIS-Bot.iml
 /.idea/vcs.xml
 /.env
+/.idea/workspace.xml
+/debug.log
