@@ -51,6 +51,9 @@ WebDriverWait(browser, 10).until(lambda d: d.find_element_by_id('DERIVED_SSR_FL_
 enrollButton = browser.find_element_by_id('DERIVED_SSR_FL_SSR_ENROLL_FL')
 
 input("Please check all the classes that you want to register for. Then click ENTER.")
+enrollButton.click()
+WebDriverWait(browser, 10).until(lambda d: d.find_element_by_id('#ICYes'))
+yesButton = browser.find_element_by_id('#ICYes')
 
 # Wait until its time
 while True:
@@ -66,9 +69,6 @@ while True:
 
     if curr_time >= registration_time:
         print("Executing")
-        enrollButton.click()
-        WebDriverWait(browser, 10).until(lambda d: d.find_element_by_id('#ICYes'))
-        yesButton = browser.find_element_by_id('#ICYes')
         yesButton.click()
         print("Successfully registered.")
         WebDriverWait(browser, 10000)
