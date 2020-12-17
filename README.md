@@ -1,6 +1,6 @@
 # SIS Bot #
 
-This selenium bot allows you to register for classes on the CWRU SIS portal right at 7:00 AM, virtually guaranteeing a spot in all of your classes.
+This selenium bot allows you to register for classes on the CWRU SIS portal right at 7:00 AM.
 
 ## Setup Instructions ##
 Make sure Python 3 is installed on your computer. Run the following command in terminal:
