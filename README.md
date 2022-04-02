@@ -19,3 +19,7 @@ Download the bot.py file to your computer. In terminal, navigate to its folder.
 Begin running at least a minute before 7:00 AM. The program will wait/keep running until 7:00 AM to register you for your classes. 
 
     python bot.py
+
+If you run into any problems, ensure you are running Python 3 by doing the following:
+
+    python3 bot.py
