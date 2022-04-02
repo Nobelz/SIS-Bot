@@ -35,7 +35,9 @@ passwordStr = getpass("Please enter your password: ")
 # Start the Selenium WebDriver
 service = Service(ChromeDriverManager().install())
 browser = webdriver.Chrome(service=service)
-browser.get('https://sis.case.edu/psc/P92SCWR_3/EMPLOYEE/SA/c/SSR_STUDENT_FL.SSR_MD_SP_FL.GBL?Action=U&MD=Y&GMenu=SSR_STUDENT_FL&GComp=SSR_START_PAGE_FL&GPage=SSR_START_PAGE_FL&scname=CS_SSR_MANAGE_CLASSES_NAV&AJAXTransfer=y&ICAJAXTrf=true&ICMDListSlideout=true')
+browser.get('https://sis.case.edu/psc/P92SCWR_3/EMPLOYEE/SA/c/SSR_STUDENT_FL.SSR_MD_SP_FL.GBL'
+            '?Action=U&MD=Y&GMenu=SSR_STUDENT_FL&GComp=SSR_START_PAGE_FL&GPage=SSR_START_PAGE_FL'
+            '&scname=CS_SSR_MANAGE_CLASSES_NAV&AJAXTransfer=y&ICAJAXTrf=true&ICMDListSlideout=true')
 
 # Wait for and get username field
 WebDriverWait(browser, 10).until(lambda d: d.find_element(By.ID, 'userid'))
@@ -61,9 +63,6 @@ WebDriverWait(browser, 10).until(lambda d: d.find_element(By.ID, 'DERIVED_SSR_FL
 enrollButton = browser.find_element(By.ID, 'DERIVED_SSR_FL_SSR_ENROLL_FL')
 
 input("Please check all the classes that you want to register for. Then press ENTER.")
-enrollButton.click()
-WebDriverWait(browser, 10).until(lambda d: d.find_element(By.ID, '#ICYes'))
-yesButton = browser.find_element(By.ID, '#ICYes')
 
 # Wait until it's time
 while True:
@@ -79,7 +78,7 @@ while True:
 
     if curr_time >= registration_time:
         print("Executing class registration.")
-        yesButton.click()
+        enrollButton.click()
         print("Successfully registered.")
         WebDriverWait(browser, 10000)
         break
