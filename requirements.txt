@@ -1,3 +1,4 @@
 selenium
-python-dateutil~=2.8.1
+python-dateutil
 webdriver-manager
+chromedriver_autoinstaller

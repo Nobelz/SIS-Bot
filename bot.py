@@ -1,6 +1,6 @@
 import datetime
 import argparse
-
+import chromedriver_autoinstaller
 import selenium.common.exceptions
 from dateutil import parser
 from getpass import getpass
@@ -9,7 +9,6 @@ from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
-from webdriver_manager.chrome import ChromeDriverManager
 
 # Set up commandline arguments
 help_text = "This selenium bot allows you to register for classes on the Case Western SIS portal right at 7:00 AM."
@@ -33,8 +32,8 @@ usernameStr = input("Please enter your Case ID (abc123): ")
 passwordStr = getpass("Please enter your password: ")
 
 # Start the Selenium WebDriver
-service = Service(ChromeDriverManager().install())
-browser = webdriver.Chrome(service=service)
+chromedriver_autoinstaller.install()
+browser = webdriver.Chrome(service=Service())
 browser.get('https://sis.case.edu/psc/P92SCWR_3/EMPLOYEE/SA/c/SSR_STUDENT_FL.SSR_MD_SP_FL.GBL'
             '?Action=U&MD=Y&GMenu=SSR_STUDENT_FL&GComp=SSR_START_PAGE_FL&GPage=SSR_START_PAGE_FL'
             '&scname=CS_SSR_MANAGE_CLASSES_NAV&AJAXTransfer=y&ICAJAXTrf=true&ICMDListSlideout=true')
@@ -50,14 +49,14 @@ signInButton = browser.find_element(By.CLASS_NAME, 'btn-primary')
 signInButton.click()
 
 try:
-    WebDriverWait(browser, 5).until(lambda d: d.find_element(By.ID, 'SCC_LO_FL_WRK_SCC_VIEW_BTN$3'))
+    WebDriverWait(browser, 10).until(lambda d: d.find_element(By.ID, 'SCC_LO_FL_WRK_SCC_VIEW_BTN$3'))
 except selenium.common.exceptions.TimeoutException:
     print("Authentication details incorrect or server took too long to respond. Please try again later.")
     exit(-1)
 
-WebDriverWait(browser, 5).until(lambda d: d.find_element(By.ID, 'SCC_LO_FL_WRK_SCC_VIEW_BTN$3'))
+WebDriverWait(browser, 15).until(lambda d: d.find_element(By.ID, 'SCC_LO_FL_WRK_SCC_VIEW_BTN$3'))
 shoppingCartButton = browser.find_element(By.ID, 'SCC_LO_FL_WRK_SCC_VIEW_BTN$3')
-shoppingCartButton.click()
+browser.execute_script("arguments[0].click();", shoppingCartButton)
 
 WebDriverWait(browser, 10).until(lambda d: d.find_element(By.ID, 'DERIVED_SSR_FL_SSR_ENROLL_FL'))
 enrollButton = browser.find_element(By.ID, 'DERIVED_SSR_FL_SSR_ENROLL_FL')
