@@ -33,7 +33,7 @@ if registration_time <= datetime.datetime.now():
 # passwordStr = getpass("Please enter your password: ")
 
 # Start the Selenium WebDriver
-chromedriver_autoinstaller.install()
+# chromedriver_autoinstaller.install()
 browser = webdriver.Chrome(service=Service())
 browser.get('https://sis.case.edu/psc/P92SCWR_12/EMPLOYEE/SA/c/'
             'SSR_STUDENT_FL.SSR_MD_SP_FL.GBL?Action=U&MD=Y&GMenu=SSR_STUDENT_FL'
@@ -62,8 +62,8 @@ input('Navigate to Shopping Cart and then press ENTER.')
 # shoppingCartButton = browser.find_element(By.ID, 'SCC_LO_FL_WRK_SCC_VIEW_BTN$3')
 # browser.execute_script("arguments[0].click();", shoppingCartButton)
 
-WebDriverWait(browser, 10).until(lambda d: d.find_element(By.ID, 'SSR_MD_SP_FL'))
-enrollButton = browser.find_element(By.ID, 'SSR_MD_SP_FL')
+WebDriverWait(browser, 10).until(lambda d: d.find_element(By.ID, 'DERIVED_SSR_FL_SSR_ENROLL_FL'))
+enrollButton = browser.find_element(By.ID, 'DERIVED_SSR_FL_SSR_ENROLL_FL')
 
 input("Please check all the classes that you want to register for. Then press ENTER.")
 
