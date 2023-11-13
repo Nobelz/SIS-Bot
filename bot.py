@@ -1,3 +1,4 @@
+from __future__ import print_function
 import datetime
 import argparse
 import chromedriver_autoinstaller
@@ -28,38 +29,41 @@ if args.time:
 if registration_time <= datetime.datetime.now():
     registration_time += datetime.timedelta(days=1)
 
-usernameStr = input("Please enter your Case ID (abc123): ")
-passwordStr = getpass("Please enter your password: ")
+# usernameStr = input("Please enter your Case ID (abc123): ")
+# passwordStr = getpass("Please enter your password: ")
 
 # Start the Selenium WebDriver
 chromedriver_autoinstaller.install()
 browser = webdriver.Chrome(service=Service())
-browser.get('https://sis.case.edu/psc/P92SCWR_3/EMPLOYEE/SA/c/SSR_STUDENT_FL.SSR_MD_SP_FL.GBL'
-            '?Action=U&MD=Y&GMenu=SSR_STUDENT_FL&GComp=SSR_START_PAGE_FL&GPage=SSR_START_PAGE_FL'
+browser.get('https://sis.case.edu/psc/P92SCWR_12/EMPLOYEE/SA/c/'
+            'SSR_STUDENT_FL.SSR_MD_SP_FL.GBL?Action=U&MD=Y&GMenu=SSR_STUDENT_FL'
+            '&GComp=SSR_START_PAGE_FL&GPage=SSR_START_PAGE_FL'
             '&scname=CS_SSR_MANAGE_CLASSES_NAV&AJAXTransfer=y&ICAJAXTrf=true&ICMDListSlideout=true')
 
-# Wait for and get username field
-WebDriverWait(browser, 10).until(lambda d: d.find_element(By.ID, 'userid'))
-username = browser.find_element(By.ID, 'userid')
-username.send_keys(usernameStr)
-password = browser.find_element(By.ID, 'pwd')
-password.send_keys(passwordStr)
+# # Wait for and get username field
+# WebDriverWait(browser, 10).until(lambda d: d.find_element(By.ID, 'userid'))
+# username = browser.find_element(By.ID, 'userid')
+# username.send_keys(usernameStr)
+# password = browser.find_element(By.ID, 'pwd')
+# password.send_keys(passwordStr)
 
-signInButton = browser.find_element(By.CLASS_NAME, 'btn-primary')
-signInButton.click()
+# signInButton = browser.find_element(By.CLASS_NAME, 'btn-primary')
+# signInButton.click()
 
-try:
-    WebDriverWait(browser, 10).until(lambda d: d.find_element(By.ID, 'SCC_LO_FL_WRK_SCC_VIEW_BTN$3'))
-except selenium.common.exceptions.TimeoutException:
-    print("Authentication details incorrect or server took too long to respond. Please try again later.")
-    exit(-1)
+input('Navigate to Shopping Cart and then press ENTER.')
 
-WebDriverWait(browser, 15).until(lambda d: d.find_element(By.ID, 'SCC_LO_FL_WRK_SCC_VIEW_BTN$3'))
-shoppingCartButton = browser.find_element(By.ID, 'SCC_LO_FL_WRK_SCC_VIEW_BTN$3')
-browser.execute_script("arguments[0].click();", shoppingCartButton)
+# try:
+#     WebDriverWait(browser, 10).until(lambda d: d.find_element(By.ID, 'SCC_LO_FL_WRK_SCC_VIEW_BTN$3'))
+# except selenium.common.exceptions.TimeoutException:
+#     print("Authentication details incorrect or server took too long to respond. Please try again later.")
+#     exit(-1)
 
-WebDriverWait(browser, 10).until(lambda d: d.find_element(By.ID, 'DERIVED_SSR_FL_SSR_ENROLL_FL'))
-enrollButton = browser.find_element(By.ID, 'DERIVED_SSR_FL_SSR_ENROLL_FL')
+# WebDriverWait(browser, 15).until(lambda d: d.find_element(By.ID, 'SCC_LO_FL_WRK_SCC_VIEW_BTN$3'))
+# shoppingCartButton = browser.find_element(By.ID, 'SCC_LO_FL_WRK_SCC_VIEW_BTN$3')
+# browser.execute_script("arguments[0].click();", shoppingCartButton)
+
+WebDriverWait(browser, 10).until(lambda d: d.find_element(By.ID, 'SSR_MD_SP_FL'))
+enrollButton = browser.find_element(By.ID, 'SSR_MD_SP_FL')
 
 input("Please check all the classes that you want to register for. Then press ENTER.")
 

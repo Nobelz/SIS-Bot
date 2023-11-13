@@ -1,4 +1,4 @@
 selenium
 python-dateutil
 webdriver-manager
-chromedriver_autoinstaller
+chromedriver-autoinstaller
